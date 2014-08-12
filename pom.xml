@@ -15,7 +15,8 @@
 		<resteasy.version>3.0.8.Final</resteasy.version>
 		<springframework.version>4.0.6.RELEASE</springframework.version>
 		<!-- mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 
-			-Dversion=11.2.0.4 -Dpackaging=jar -Dfile=META-INF/ojdbc6-11.2.0.4.jar -DgeneratePom=true -->
+			-Dversion=11.2.0.4 -Dpackaging=jar -Dfile=src/main/webapp/META-INF/ojdbc6-11.2.0.4.jar 
+			-DgeneratePom=true -->
 		<ojdbc6.version>11.2.0.4</ojdbc6.version>
 	</properties>
 
