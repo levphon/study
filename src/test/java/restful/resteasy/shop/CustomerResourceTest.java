@@ -14,7 +14,7 @@ import restful.resteasy.shop.domain.Customer;
 
 public class CustomerResourceTest {
 
-	private static String uri = "http://localhost:8080/study/restful/resteasy/shop/customers";
+	private static String uri = "http://localhost:8080/study/resteasy/shop/customers";
 
 	@Test
 	public void testCreateAndGetCustomer() {
