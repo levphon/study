@@ -2,7 +2,7 @@ package spring.javaconfig;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebMvcApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
