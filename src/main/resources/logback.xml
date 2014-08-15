@@ -7,10 +7,23 @@
 		</encoder>
 	</appender>
 
+	<!-- <property name="LOG_HOME" value="${catalina.base}/webapps/study/logs" /> -->
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %level [%thread] %logger [%file:%line]%msg%n</pattern>
+		</encoder>
+	</appender>
+
 	<!-- <logger name="org.springframework" level="WARN" /> -->
 
 	<root level="DEBUG">
 		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
 	</root>
 
 </configuration>
