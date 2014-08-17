@@ -1,4 +1,4 @@
-package spring.bean.initializing;
+package spring.bean.initializingBean;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
