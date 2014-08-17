@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,8 +22,9 @@ public class SpringTest {
 	private ApplicationContext context;
 
 	public static void main(String[] args) {
-		ApplicationContext context = new GenericXmlApplicationContext("classpath:spring/beans.xml");
+		AbstractApplicationContext context = new GenericXmlApplicationContext("classpath:spring/beans.xml");
 		System.out.println(context);
+		context.close();
 	}
 
 	@Test

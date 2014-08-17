@@ -2,6 +2,7 @@ package spring.javaconfig;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -23,13 +25,16 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @PropertySource("classpath:spring/jdbc/jdbc.properties")
 public class ApplicationContextConfiguration implements TransactionManagementConfigurer {
 
-	public static @Bean PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+	@Autowired
+	private Environment environment;
 
 	private @Value("${jdbc.url}") String url;
 	private @Value("${jdbc.username}") String username;
 	private @Value("${jdbc.password}") String password;
+
+	public static @Bean PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
 
 	public @Bean DataSource dataSource() {
 		return new DriverManagerDataSource(url, username, password);
