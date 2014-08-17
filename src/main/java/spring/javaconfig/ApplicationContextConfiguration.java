@@ -4,6 +4,8 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -16,6 +18,8 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 
 @Configuration
 @EnableTransactionManagement
+@ComponentScan(basePackages = { "spring" }, excludeFilters = { @Filter( Configuration.class ) })
+//@ComponentScan(basePackages = { "spring" }, excludeFilters = { @Filter(type = FilterType.REGEX, pattern = "spring.javaconfig.*") })
 @PropertySource("classpath:spring/jdbc/jdbc.properties")
 public class ApplicationContextConfiguration implements TransactionManagementConfigurer {
 
