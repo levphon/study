@@ -1,14 +1,14 @@
 package spring.jdbc.domain;
 
 public class Dept {
-	private int deptno;
+	private Integer deptno;
 	private String dname;
 	private String loc;
 
-	public int getDeptno() {
+	public Integer getDeptno() {
 		return deptno;
 	}
-	public void setDeptno(int deptno) {
+	public void setDeptno(Integer deptno) {
 		this.deptno = deptno;
 	}
 	public String getDname() {
