@@ -1,14 +1,14 @@
 package spring.jdbc.domain;
 
 public class Dept {
-	private String deptno;
+	private int deptno;
 	private String dname;
 	private String loc;
 
-	public String getDeptno() {
+	public int getDeptno() {
 		return deptno;
 	}
-	public void setDeptno(String deptno) {
+	public void setDeptno(int deptno) {
 		this.deptno = deptno;
 	}
 	public String getDname() {
@@ -22,5 +22,9 @@ public class Dept {
 	}
 	public void setLoc(String loc) {
 		this.loc = loc;
+	}
+	@Override
+	public String toString() {
+		return "{deptno:" + deptno + ",dname:" + dname + ",loc:" + loc + "}";
 	}
 }
