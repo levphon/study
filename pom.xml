@@ -19,6 +19,8 @@
 			-Dversion=11.2.0.4 -Dpackaging=jar -Dfile=src/main/webapp/META-INF/ojdbc6-11.2.0.4.jar 
 			-DgeneratePom=true -->
 		<ojdbc6.version>11.2.0.4</ojdbc6.version>
+		<javax.inject.version>1</javax.inject.version>
+		<jaxb.version>2.2.7</jaxb.version>
 	</properties>
 
 	<dependencies>
@@ -131,10 +133,33 @@
 			<version>${ojdbc6.version}</version>
 		</dependency>
 
+		<!-- javax.inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
-			<version>1</version>
+			<version>${javax.inject.version}</version>
+		</dependency>
+
+		<!-- JAXB -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>${jaxb.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>FastInfoset</artifactId>
+					<groupId>com.sun.xml.fastinfoset</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>istack-commons-runtime</artifactId>
+					<groupId>com.sun.istack</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 	</dependencies>

@@ -71,4 +71,10 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 
+	<oxm:jaxb2-marshaller id="jaxb2-marshaller">
+		<oxm:class-to-be-bound name="restful.resteasy.shop.domain.Customer"/>
+	</oxm:jaxb2-marshaller>
+
+	<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller"/>
+
 </beans>
