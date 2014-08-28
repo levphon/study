@@ -14,7 +14,7 @@ import rest.resteasy.shop.domain.Customer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/beans.xml")
-public class RestfulClientTest {
+public class RestClientTest {
 
 	private static String uri = "http://localhost:8080/study/resteasy/shop/customers";
 
