@@ -56,21 +56,23 @@ public class CustomerResourceBean implements CustomerResource {
 		customerDB.remove(id);
 	}
 
+	private Map<Integer, rest.resteasy.shop.domain.xml.Customer> customerDB_xml = new ConcurrentHashMap<Integer, rest.resteasy.shop.domain.xml.Customer>();
+
 	@Override
-	public Response createCustomer_xml(Customer customer) {
+	public Response createCustomer_xml(rest.resteasy.shop.domain.xml.Customer customer) {
 		customer.setId(idCounter.incrementAndGet());
-		customerDB.put(customer.getId(), customer);
+		customerDB_xml.put(customer.getId(), customer);
 		return Response.created(URI.create("/customers/xml/" + customer.getId())).build();
 	}
 
 	@Override
-	public Collection<Customer> getCustomers_xml() {
-		return customerDB.values();
+	public Collection<rest.resteasy.shop.domain.xml.Customer> getCustomers_xml() {
+		return customerDB_xml.values();
 	}
 
 	@Override
-	public Customer getCustomer_xml(Integer id) {
-		return customerDB.get(id);
+	public rest.resteasy.shop.domain.xml.Customer getCustomer_xml(Integer id) {
+		return customerDB_xml.get(id);
 	}
 
 }

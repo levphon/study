@@ -52,16 +52,16 @@ public interface CustomerResource {
 	@POST
 	@Path("/xml")
 	@Consumes(MediaType.APPLICATION_XML)
-	public abstract Response createCustomer_xml(Customer customer);
+	public abstract Response createCustomer_xml(rest.resteasy.shop.domain.xml.Customer customer);
 
 	@GET
 	@Path("/xml")
 	@Produces(MediaType.APPLICATION_XML)
-	public abstract Collection<Customer> getCustomers_xml();
+	public abstract Collection<rest.resteasy.shop.domain.xml.Customer> getCustomers_xml();
 
 	@GET
 	@Path("/xml/{id : \\d+}")
 	@Produces(MediaType.APPLICATION_XML)
-	public abstract Customer getCustomer_xml(@PathParam("id") Integer id);
+	public abstract rest.resteasy.shop.domain.xml.Customer getCustomer_xml(@PathParam("id") Integer id);
 
 }

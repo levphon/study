@@ -1,5 +1,7 @@
 package rest.resteasy.shop.domain.xml;
 
+import java.io.StringWriter;
+
 import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -83,8 +85,9 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		JAXB.marshal(this, System.out);
-		return null;
+		StringWriter xml = new StringWriter();
+		JAXB.marshal(this, xml);
+		return xml.toString();
 	}
 
 }

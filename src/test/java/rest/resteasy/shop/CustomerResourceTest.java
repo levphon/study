@@ -16,8 +16,6 @@ public class CustomerResourceTest {
 
 	private static String uri = "http://localhost:8080/study/resteasy/shop/customers";
 
-	private static String uri_xml = "http://localhost:8080/study/resteasy/shop/customers/xml";
-
 	@Test
 	public void testCreateAndGetCustomer() {
 		Customer customer = new Customer();
@@ -59,6 +57,8 @@ public class CustomerResourceTest {
 		System.out.println(response.getStatus());
 		response.close();
 	}
+
+	private static String uri_xml = "http://localhost:8080/study/resteasy/shop/customers/xml";
 
 	@Test
 	public void testCreateAndGetCustomer_xml() {
