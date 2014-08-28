@@ -18,6 +18,8 @@ import rest.resteasy.shop.domain.Customer;
 @Path("/customers")
 public interface CustomerResource {
 
+	// json
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public abstract Response createCustomer(Customer customer);
@@ -43,5 +45,23 @@ public interface CustomerResource {
 	@DELETE
 	@Path("/{id : \\d+}")
 	public abstract void deleteCustomer(@PathParam("id") Integer id);
+
+
+	// xml
+
+	@POST
+	@Path("/xml")
+	@Consumes(MediaType.APPLICATION_XML)
+	public abstract Response createCustomer_xml(Customer customer);
+
+	@GET
+	@Path("/xml")
+	@Produces(MediaType.APPLICATION_XML)
+	public abstract Collection<Customer> getCustomers_xml();
+
+	@GET
+	@Path("/xml/{id : \\d+}")
+	@Produces(MediaType.APPLICATION_XML)
+	public abstract Customer getCustomer_xml(@PathParam("id") Integer id);
 
 }

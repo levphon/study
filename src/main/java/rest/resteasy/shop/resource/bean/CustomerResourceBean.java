@@ -56,4 +56,21 @@ public class CustomerResourceBean implements CustomerResource {
 		customerDB.remove(id);
 	}
 
+	@Override
+	public Response createCustomer_xml(Customer customer) {
+		customer.setId(idCounter.incrementAndGet());
+		customerDB.put(customer.getId(), customer);
+		return Response.created(URI.create("/customers/xml/" + customer.getId())).build();
+	}
+
+	@Override
+	public Collection<Customer> getCustomers_xml() {
+		return customerDB.values();
+	}
+
+	@Override
+	public Customer getCustomer_xml(Integer id) {
+		return customerDB.get(id);
+	}
+
 }

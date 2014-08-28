@@ -16,6 +16,8 @@ public class CustomerResourceTest {
 
 	private static String uri = "http://localhost:8080/study/resteasy/shop/customers";
 
+	private static String uri_xml = "http://localhost:8080/study/resteasy/shop/customers/xml";
+
 	@Test
 	public void testCreateAndGetCustomer() {
 		Customer customer = new Customer();
@@ -56,6 +58,31 @@ public class CustomerResourceTest {
 		Response response = ClientBuilder.newClient().target(uri + "/1").request().delete();
 		System.out.println(response.getStatus());
 		response.close();
+	}
+
+	@Test
+	public void testCreateAndGetCustomer_xml() {
+		rest.resteasy.shop.domain.xml.Customer customer = new rest.resteasy.shop.domain.xml.Customer();
+		customer.setFirstName("Wang");
+		customer.setLastName("mumu");
+		Response postResponse = ClientBuilder.newClient().target(uri_xml).request().post(Entity.xml(customer));
+		System.out.println(postResponse.getStatus());
+		postResponse.close();
+
+		URI getUri = postResponse.getLocation();
+		Response getResponse = ClientBuilder.newClient().target(getUri).request().get();
+		getResponse.bufferEntity();
+		rest.resteasy.shop.domain.xml.Customer getCustomer = getResponse.readEntity(rest.resteasy.shop.domain.xml.Customer.class);
+		System.out.println(getCustomer);
+		getResponse.close();
+	}
+
+	@Test
+	public void testGetCustomers_xml() {
+		Response response = ClientBuilder.newClient().target(uri_xml).request().get();
+		response.bufferEntity();
+		List<rest.resteasy.shop.domain.xml.Customer> customers = response.readEntity(new GenericType<List<rest.resteasy.shop.domain.xml.Customer>>() {});
+		System.out.println(customers);
 	}
 
 }
