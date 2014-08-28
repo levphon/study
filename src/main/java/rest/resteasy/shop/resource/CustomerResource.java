@@ -1,4 +1,4 @@
-package restful.resteasy.shop.resource;
+package rest.resteasy.shop.resource;
 
 import java.util.Collection;
 
@@ -13,7 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import restful.resteasy.shop.domain.Customer;
+import rest.resteasy.shop.domain.Customer;
 
 @Path("/customers")
 public interface CustomerResource {

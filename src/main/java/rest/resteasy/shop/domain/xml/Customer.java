@@ -1,5 +1,12 @@
-package restful.resteasy.shop.domain;
+package rest.resteasy.shop.domain.xml;
 
+import javax.xml.bind.JAXB;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Customer {
 	private Integer id;
 	private String firstName;
@@ -76,7 +83,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "{id:" + this.id + ",firstName:" + this.firstName + ",'lastName':" + this.lastName + "}";
+		JAXB.marshal(this, System.out);
+		return null;
 	}
 
 }

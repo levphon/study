@@ -71,10 +71,12 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 
-	<oxm:jaxb2-marshaller id="jaxb2-marshaller">
-		<oxm:class-to-be-bound name="restful.resteasy.shop.domain.Customer"/>
-	</oxm:jaxb2-marshaller>
-
-	<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller"/>
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+			</list>
+		</property>
+	</bean>
 
 </beans>

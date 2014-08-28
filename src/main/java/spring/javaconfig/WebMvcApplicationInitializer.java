@@ -1,7 +1,13 @@
 package spring.javaconfig;
 
+import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.annotation.MultipartConfig;
+
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+@MultipartConfig
 public class WebMvcApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
@@ -17,6 +23,21 @@ public class WebMvcApplicationInitializer extends AbstractAnnotationConfigDispat
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/*" };
+	}
+
+	@Override
+	protected Filter[] getServletFilters() {
+		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+		characterEncodingFilter.setEncoding("UTF-8");
+		characterEncodingFilter.setForceEncoding(true);
+		return new Filter[] { characterEncodingFilter };
+	}
+
+	@Override
+	protected void customizeRegistration(javax.servlet.ServletRegistration.Dynamic registration) {
+		MultipartConfig multipartConfig = this.getClass().getAnnotation(MultipartConfig.class);
+		MultipartConfigElement multipartConfigElement = new MultipartConfigElement(multipartConfig);
+		registration.setMultipartConfig(multipartConfigElement);
 	}
 
 }
