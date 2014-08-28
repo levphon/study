@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import rest.resteasy.shop.domain.Customer;
+import rest.resteasy.shop.domain.Customer_xml;
 
 @Path("/customers")
 public interface CustomerResource {
@@ -52,16 +53,16 @@ public interface CustomerResource {
 	@POST
 	@Path("/xml")
 	@Consumes(MediaType.APPLICATION_XML)
-	public abstract Response createCustomer_xml(rest.resteasy.shop.domain.xml.Customer customer);
+	public abstract Response createCustomer_xml(Customer_xml customer);
 
 	@GET
 	@Path("/xml")
 	@Produces(MediaType.APPLICATION_XML)
-	public abstract Collection<rest.resteasy.shop.domain.xml.Customer> getCustomers_xml();
+	public abstract Collection<Customer_xml> getCustomers_xml();
 
 	@GET
 	@Path("/xml/{id : \\d+}")
 	@Produces(MediaType.APPLICATION_XML)
-	public abstract rest.resteasy.shop.domain.xml.Customer getCustomer_xml(@PathParam("id") Integer id);
+	public abstract Customer_xml getCustomer_xml(@PathParam("id") Integer id);
 
 }

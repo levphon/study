@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import org.junit.Test;
 
 import rest.resteasy.shop.domain.Customer;
+import rest.resteasy.shop.domain.Customer_xml;
 
 public class CustomerResourceTest {
 
@@ -62,7 +63,7 @@ public class CustomerResourceTest {
 
 	@Test
 	public void testCreateAndGetCustomer_xml() {
-		rest.resteasy.shop.domain.xml.Customer customer = new rest.resteasy.shop.domain.xml.Customer();
+		Customer_xml customer = new Customer_xml();
 		customer.setFirstName("Wang");
 		customer.setLastName("mumu");
 		Response postResponse = ClientBuilder.newClient().target(uri_xml).request().post(Entity.xml(customer));
@@ -72,7 +73,7 @@ public class CustomerResourceTest {
 		URI getUri = postResponse.getLocation();
 		Response getResponse = ClientBuilder.newClient().target(getUri).request().get();
 		getResponse.bufferEntity();
-		rest.resteasy.shop.domain.xml.Customer getCustomer = getResponse.readEntity(rest.resteasy.shop.domain.xml.Customer.class);
+		Customer_xml getCustomer = getResponse.readEntity(Customer_xml.class);
 		System.out.println(getCustomer);
 		getResponse.close();
 	}
@@ -81,7 +82,7 @@ public class CustomerResourceTest {
 	public void testGetCustomers_xml() {
 		Response response = ClientBuilder.newClient().target(uri_xml).request().get();
 		response.bufferEntity();
-		List<rest.resteasy.shop.domain.xml.Customer> customers = response.readEntity(new GenericType<List<rest.resteasy.shop.domain.xml.Customer>>() {});
+		List<Customer_xml> customers = response.readEntity(new GenericType<List<Customer_xml>>() {});
 		System.out.println(customers);
 	}
 

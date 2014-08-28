@@ -1,4 +1,4 @@
-package rest.resteasy.shop.domain.xml;
+package rest.resteasy.shop.domain;
 
 import java.io.StringWriter;
 
@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Customer {
+public class Customer_xml {
 	private Integer id;
 	private String firstName;
 	private String lastName;

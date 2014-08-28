@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.ws.rs.core.Response;
 
 import rest.resteasy.shop.domain.Customer;
+import rest.resteasy.shop.domain.Customer_xml;
 import rest.resteasy.shop.resource.CustomerResource;
 
 public class CustomerResourceBean implements CustomerResource {
@@ -56,22 +57,22 @@ public class CustomerResourceBean implements CustomerResource {
 		customerDB.remove(id);
 	}
 
-	private Map<Integer, rest.resteasy.shop.domain.xml.Customer> customerDB_xml = new ConcurrentHashMap<Integer, rest.resteasy.shop.domain.xml.Customer>();
+	private Map<Integer, Customer_xml> customerDB_xml = new ConcurrentHashMap<Integer, Customer_xml>();
 
 	@Override
-	public Response createCustomer_xml(rest.resteasy.shop.domain.xml.Customer customer) {
+	public Response createCustomer_xml(Customer_xml customer) {
 		customer.setId(idCounter.incrementAndGet());
 		customerDB_xml.put(customer.getId(), customer);
 		return Response.created(URI.create("/customers/xml/" + customer.getId())).build();
 	}
 
 	@Override
-	public Collection<rest.resteasy.shop.domain.xml.Customer> getCustomers_xml() {
+	public Collection<Customer_xml> getCustomers_xml() {
 		return customerDB_xml.values();
 	}
 
 	@Override
-	public rest.resteasy.shop.domain.xml.Customer getCustomer_xml(Integer id) {
+	public Customer_xml getCustomer_xml(Integer id) {
 		return customerDB_xml.get(id);
 	}
 
