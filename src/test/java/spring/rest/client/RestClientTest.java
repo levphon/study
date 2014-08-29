@@ -71,9 +71,9 @@ public class RestClientTest {
 		customer.setFirstName("Wang");
 		customer.setLastName("mumu");
 
-		// beans.xml将MappingJackson2HttpMessageConverter放最后,或者HttpEntityUtil(手动设置HttpHeaders)
+		// beans.xml将MappingJackson2HttpMessageConverter放最后,或者RequestEntity(手动设置HttpHeaders)
 		URI location = this.restTemplate.postForLocation(uri_xml, customer);
-//		URI location = this.restTemplate.postForLocation(uri_xml, HttpEntityUtil.xml(customer));
+//		URI location = this.restTemplate.postForLocation(uri_xml, RequestEntity.xml(customer));
 		System.out.println("location:" + location);
 		Customer_xml customerGet = this.restTemplate.getForObject(location, Customer_xml.class);
 		System.out.println(customerGet);

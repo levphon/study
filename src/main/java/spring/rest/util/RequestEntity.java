@@ -4,15 +4,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
-import rest.resteasy.shop.domain.Customer;
-
-public final class HttpEntityUtil {
+public final class RequestEntity {
 
 	private static final HttpHeaders jsonHeaders;
 
 	private static final HttpHeaders xmlHeaders;
 
-	private HttpEntityUtil() {
+	private RequestEntity() {
 	}
 
 	static {
@@ -20,11 +18,6 @@ public final class HttpEntityUtil {
 		jsonHeaders.setContentType(MediaType.APPLICATION_JSON);
 		xmlHeaders = new HttpHeaders();
 		xmlHeaders.setContentType(MediaType.APPLICATION_XML);
-	}
-
-	public static void main(String[] args) {
-		Customer customer = new Customer();
-		HttpEntityUtil.json(customer);
 	}
 
 	public static HttpEntity<Object> json(Object request) {
