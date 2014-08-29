@@ -74,12 +74,28 @@
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 		<property name="messageConverters">
 			<list>
-				<!-- 这里将MappingJackson2HttpMessageConverter放最后(spring.rest.util.HttpEntityUtil) -->
+				<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+					<property name="marshaller" ref="marshaller"/>
+					<property name="unmarshaller" ref="marshaller"/>
+				</bean>
 				<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
 				<bean class="org.springframework.http.converter.xml.Jaxb2CollectionHttpMessageConverter"/>
+				<!-- 这里将MappingJackson2HttpMessageConverter放最后(spring.rest.util.HttpEntityUtil) -->
 				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 			</list>
 		</property>
 	</bean>
+
+	<oxm:jaxb2-marshaller id="marshaller">
+		<oxm:class-to-be-bound name="rest.resteasy.shop.domain.Customer_xml"/>
+	</oxm:jaxb2-marshaller>
+
+	<!-- <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="classesToBeBound">
+			<array>
+				<bean class="rest.resteasy.shop.domain.Customer_xml"/>
+			</array>
+		</property>
+	</bean> -->
 
 </beans>
