@@ -3,13 +3,12 @@ package spring.rest.client;
 import java.net.URI;
 import java.util.List;
 
-import javax.ws.rs.core.MediaType;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
@@ -72,10 +71,9 @@ public class RestClientTest {
 		customer.setFirstName("Wang");
 		customer.setLastName("mumu");
 
-		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.set("Content-Type", MediaType.APPLICATION_XML);
-		HttpEntity<Customer_xml> httpEntity = new HttpEntity<Customer_xml>(customer, httpHeaders);
-		URI location = this.restTemplate.postForLocation(uri_xml, httpEntity);
+		// beans.xml将MappingJackson2HttpMessageConverter放最后,或者HttpEntityUtil(手动设置HttpHeaders)
+		URI location = this.restTemplate.postForLocation(uri_xml, customer);
+//		URI location = this.restTemplate.postForLocation(uri_xml, HttpEntityUtil.xml(customer));
 		System.out.println("location:" + location);
 		Customer_xml customerGet = this.restTemplate.getForObject(location, Customer_xml.class);
 		System.out.println(customerGet);
@@ -83,8 +81,9 @@ public class RestClientTest {
 
 	@Test
 	public void testGetCustomers_xml() {
-		List<?> customers = this.restTemplate.getForObject(uri_xml, List.class);
-		System.out.println(customers);
+		ParameterizedTypeReference<List<Customer_xml>> typeReference = new ParameterizedTypeReference<List<Customer_xml>>() {};
+		ResponseEntity<List<Customer_xml>> responseEntity = this.restTemplate.exchange(URI.create(uri_xml), HttpMethod.GET, null, typeReference);
+		System.out.println(responseEntity.getBody());
 	}
 
 }

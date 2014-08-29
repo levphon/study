@@ -74,8 +74,10 @@
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 		<property name="messageConverters">
 			<list>
-				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+				<!-- 这里将MappingJackson2HttpMessageConverter放最后(spring.rest.util.HttpEntityUtil) -->
 				<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
+				<bean class="org.springframework.http.converter.xml.Jaxb2CollectionHttpMessageConverter"/>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 			</list>
 		</property>
 	</bean>
