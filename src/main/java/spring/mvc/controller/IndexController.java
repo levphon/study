@@ -46,7 +46,8 @@ public class IndexController {
 	}
 
 	/**
-	 * JAXB2 not supports collection
+	 * JAXB2 not supports collection write
+	 * @see org.jboss.resteasy.plugins.providers.jaxb.JaxbCollection
 	 * @return
 	 */
 	@ResponseBody

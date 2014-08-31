@@ -90,7 +90,7 @@
 		</property>
 	</bean>
 
-	<!-- not supports collection  see org.jboss.resteasy.plugins.providers.jaxb.JaxbCollection -->
+	<!-- not supports collection  @see org.jboss.resteasy.plugins.providers.jaxb.JaxbCollection -->
 	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
 		<property name="marshallerProperties">
 			<map>
