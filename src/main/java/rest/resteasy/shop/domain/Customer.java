@@ -4,77 +4,34 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Customer {
-	private Integer id;
-	private String firstName;
-	private String lastName;
-	private String street;
-	private String city;
-	private String state;
-	private String zip;
-	private String country;
+	private Integer id = Integer.MIN_VALUE;
+	private String firstName = "default firstName";
+	private String lastName = "default lastName";
+	private String empty;
 
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getFirstName() {
 		return firstName;
 	}
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 	public String getLastName() {
 		return lastName;
 	}
-
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	public String getStreet() {
-		return street;
+	public String getEmpty() {
+		return empty;
 	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getZip() {
-		return zip;
-	}
-
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
+	public void setEmpty(String empty) {
+		this.empty = empty;
 	}
 
 	@Override

@@ -48,62 +48,44 @@
 		http://www.springframework.org/schema/websocket
 			http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
-	<context:property-placeholder location="classpath:spring/jdbc/jdbc.properties"/>
+	<context:component-scan base-package="spring.mvc.controller"/>
 
-	<context:component-scan base-package="spring">
-		<context:exclude-filter type="annotation" expression="org.springframework.context.annotation.Configuration"/>
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-		<!-- <context:exclude-filter type="regex" expression="spring.javaconfig.*"/> -->
-	</context:component-scan>
-
-	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}"/> -->
-
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="url" value="${jdbc.url}"/>
-		<property name="username" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}"/>
-	</bean>
-
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
-
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
-
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-
-	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">
 			<list>
-				<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
-					<property name="marshaller" ref="marshaller"/>
-					<property name="unmarshaller" ref="marshaller"/>
-				</bean>
-				<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
-				<!-- only canRead -->
-				<bean class="org.springframework.http.converter.xml.Jaxb2CollectionHttpMessageConverter"/>
-				<!-- 这里将MappingJackson2HttpMessageConverter放最后(spring.rest.util.RequestEntity) -->
 				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 			</list>
 		</property>
 	</bean>
 
-	<!-- not supports collection  see org.jboss.resteasy.plugins.providers.jaxb.JaxbCollection -->
-	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-		<property name="marshallerProperties">
-			<map>
-				<entry key="jaxb.formatted.output" value="true" value-type="java.lang.Boolean"/>
-			</map>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="interceptors">
+			<array>
+				<bean class="cn.anyang.zc.arbitration.web.intercepter.SecurityHandlerInterceptor"/>
+			</array>
 		</property>
-		<property name="classesToBeBound">
-			<value>rest.resteasy.shop.domain.Customer_xml</value>
-		</property>
+	</bean> -->
+
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+					<property name="marshaller" ref="marshaller"/>
+					<property name="unmarshaller" ref="marshaller"/>
+				</bean>
+				<!-- <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/> -->
+				<!-- 这里将MappingJackson2HttpMessageConverter放最后(spring.rest.util.RequestEntity) -->
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<mvc:default-servlet-handler/>
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="1"/>
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
 	</bean>
 
-	<!-- <oxm:jaxb2-marshaller id="marshaller">
-		<oxm:class-to-be-bound name="rest.resteasy.shop.domain.Customer_xml"/>
-	</oxm:jaxb2-marshaller> -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 
 </beans>

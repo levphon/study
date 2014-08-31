@@ -13,15 +13,17 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.XmlMappingException;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import rest.resteasy.shop.domain.Customer;
+import rest.resteasy.shop.domain.Customer_xml;
 
+@ActiveProfiles("xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/beans.xml")
+@ContextConfiguration(locations = { "classpath:spring/beans.xml" })
 public class SpringTest {
 
 	@Autowired
@@ -53,8 +55,8 @@ public class SpringTest {
 
 	@Test
 	public void testJaxb2() throws XmlMappingException, IOException {
-		Marshaller marshaller = context.getBean("jaxb2Marshaller", Marshaller.class);
-		marshaller.marshal(new Customer(), new StreamResult(System.out));
+		Jaxb2Marshaller marshaller = context.getBean("marshaller", Jaxb2Marshaller.class);
+		marshaller.marshal(new Customer_xml(), new StreamResult(System.out));
 	}
 
 }

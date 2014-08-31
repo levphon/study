@@ -8,9 +8,10 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 @MultipartConfig
-public class WebMvcApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebMvcApplicationInitializer {
+//public class WebMvcApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	@Override
+	/*@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] { ApplicationContextConfiguration.class };
 	}
@@ -38,6 +39,6 @@ public class WebMvcApplicationInitializer extends AbstractAnnotationConfigDispat
 		MultipartConfig multipartConfig = this.getClass().getAnnotation(MultipartConfig.class);
 		MultipartConfigElement multipartConfigElement = new MultipartConfigElement(multipartConfig);
 		registration.setMultipartConfig(multipartConfigElement);
-	}
+	}*/
 
 }
