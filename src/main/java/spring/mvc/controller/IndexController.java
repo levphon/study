@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import rest.resteasy.shop.domain.Customer_xml;
 
 /**
- * @see AbstractMessageConverterMethodProcessor.writeWithMessageConverters
+ * @see org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters
  * @author Hebaceous
  */
 @Controller
