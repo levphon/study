@@ -23,6 +23,7 @@
 		<ojdbc6.version>11.2.0.4</ojdbc6.version>
 		<javax.inject.version>1</javax.inject.version>
 		<jaxb.version>2.2.7</jaxb.version>
+		<jedis.version>2.5.2</jedis.version>
 	</properties>
 
 	<dependencies>
@@ -183,6 +184,13 @@
 					<groupId>com.sun.istack</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<!-- jedis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${jedis.version}</version>
 		</dependency>
 
 	</dependencies>
