@@ -81,6 +81,9 @@ public class CustomerResourceTest {
 		System.out.println(getCustomer);
 	}
 
+	/**
+	 * 目前无法实现(2014-09-02)
+	 */
 	@Test
 	public void testCreateCustomers_xmlAndGetCustomers_xml() {
 		Customer_xml customer1 = new Customer_xml();
