@@ -98,7 +98,7 @@
 			</map>
 		</property>
 		<property name="classesToBeBound">
-			<value>rest.resteasy.shop.domain.Customer_xml</value>
+			<value>rest.domain.Customer_xml</value>
 		</property>
 	</bean>
 

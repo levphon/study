@@ -8,12 +8,12 @@ import rest.resteasy.resource.bean.CustomerResourceBean;
 import java.util.HashSet;
 import java.util.Set;
 
-@ApplicationPath("/resteasy/shop")
-public class ShoppingApplication extends Application {
+@ApplicationPath("/resteasy")
+public class ResteasyApplication extends Application {
 
 	private Set<Object> singletons = new HashSet<Object>();
 
-	public ShoppingApplication() {
+	public ResteasyApplication() {
 		singletons.add(new CustomerResourceBean());
 	}
 

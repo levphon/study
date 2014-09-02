@@ -1,12 +1,10 @@
 package rest.resteasy.resource.bean;
 
-import java.net.URI;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import javax.ws.rs.core.Response;
 
 import rest.domain.Customer;
 import rest.domain.Customer_xml;
@@ -18,10 +16,21 @@ public class CustomerResourceBean implements CustomerResource {
 	private Map<Integer, Customer> customerDB = new ConcurrentHashMap<Integer, Customer>();
 
 	@Override
-	public Response createCustomer(Customer customer) {
+	public Customer createCustomer(Customer customer) {
 		customer.setId(idCounter.incrementAndGet());
 		customerDB.put(customer.getId(), customer);
-		return Response.created(URI.create("/customers/" + customer.getId())).build();
+		return customer;
+//		return Response.created(URI.create("/customers/" + customer.getId())).build();
+	}
+
+	@Override
+	public Collection<Customer> createCustomers(List<Customer> customers) {
+		for(Customer customer : customers) {
+			customer.setId(idCounter.incrementAndGet());
+			customerDB.put(customer.getId(), customer);
+		}
+		return customerDB.values();
+//		return Response.created(URI.create("/customers")).build();
 	}
 
 	@Override
@@ -60,10 +69,20 @@ public class CustomerResourceBean implements CustomerResource {
 	private Map<Integer, Customer_xml> customerDB_xml = new ConcurrentHashMap<Integer, Customer_xml>();
 
 	@Override
-	public Response createCustomer_xml(Customer_xml customer) {
+	public Customer_xml createCustomer_xml(Customer_xml customer) {
 		customer.setId(idCounter.incrementAndGet());
 		customerDB_xml.put(customer.getId(), customer);
-		return Response.created(URI.create("/customers/xml/" + customer.getId())).build();
+		return customer;
+//		return Response.created(URI.create("/customers/xml/" + customer.getId())).build();
+	}
+
+	@Override
+	public Collection<Customer_xml> createCustomers_xml(List<Customer_xml> customers) {
+		for(Customer_xml customer : customers) {
+			customer.setId(idCounter.incrementAndGet());
+			customerDB_xml.put(customer.getId(), customer);
+		}
+		return customerDB_xml.values();
 	}
 
 	@Override
