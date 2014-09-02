@@ -33,7 +33,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 import org.springframework.web.client.RestTemplate;
 
-import rest.resteasy.shop.domain.Customer_xml;
+import rest.domain.Customer_xml;
 
 @Profile("java")
 @Configuration

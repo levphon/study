@@ -1,4 +1,4 @@
-package rest.resteasy.shop.resource.bean;
+package rest.resteasy.resource.bean;
 
 import java.net.URI;
 import java.util.Collection;
@@ -8,9 +8,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.ws.rs.core.Response;
 
-import rest.resteasy.shop.domain.Customer;
-import rest.resteasy.shop.domain.Customer_xml;
-import rest.resteasy.shop.resource.CustomerResource;
+import rest.domain.Customer;
+import rest.domain.Customer_xml;
+import rest.resteasy.resource.CustomerResource;
 
 public class CustomerResourceBean implements CustomerResource {
 

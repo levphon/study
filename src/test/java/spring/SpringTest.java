@@ -19,7 +19,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import rest.resteasy.shop.domain.Customer_xml;
+import rest.domain.Customer_xml;
 
 @ActiveProfiles("xml")
 @RunWith(SpringJUnit4ClassRunner.class)

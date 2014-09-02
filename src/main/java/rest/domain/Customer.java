@@ -1,15 +1,9 @@
-package rest.resteasy.shop.domain;
+package rest.domain;
 
-import java.io.StringWriter;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import javax.xml.bind.JAXB;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Customer_xml {
+public class Customer {
 	private Integer id = Integer.MIN_VALUE;
 	private String firstName = "default firstName";
 	private String lastName = "default lastName";
@@ -42,9 +36,12 @@ public class Customer_xml {
 
 	@Override
 	public String toString() {
-		StringWriter xml = new StringWriter();
-		JAXB.marshal(this, xml);
-		return xml.toString();
+		try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

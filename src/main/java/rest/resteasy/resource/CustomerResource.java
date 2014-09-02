@@ -1,4 +1,4 @@
-package rest.resteasy.shop.resource;
+package rest.resteasy.resource;
 
 import java.util.Collection;
 
@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.providers.jaxb.Wrapped;
 
-import rest.resteasy.shop.domain.Customer;
-import rest.resteasy.shop.domain.Customer_xml;
+import rest.domain.Customer;
+import rest.domain.Customer_xml;
 
 @Path("/customers")
 public interface CustomerResource {

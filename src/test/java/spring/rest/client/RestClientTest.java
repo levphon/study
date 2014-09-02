@@ -13,8 +13,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
-import rest.resteasy.shop.domain.Customer;
-import rest.resteasy.shop.domain.Customer_xml;
+import rest.domain.Customer;
+import rest.domain.Customer_xml;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/beans.xml")

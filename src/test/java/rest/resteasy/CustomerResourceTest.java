@@ -1,4 +1,4 @@
-package rest.resteasy.shop;
+package rest.resteasy;
 
 import java.net.URI;
 import java.util.List;
@@ -10,8 +10,8 @@ import javax.ws.rs.core.Response;
 
 import org.junit.Test;
 
-import rest.resteasy.shop.domain.Customer;
-import rest.resteasy.shop.domain.Customer_xml;
+import rest.domain.Customer;
+import rest.domain.Customer_xml;
 
 public class CustomerResourceTest {
 
