@@ -19,7 +19,7 @@ import rest.domain.Customer;
 import rest.domain.Customer_xml;
 
 @Path("/customers")
-public interface ResteasyResource {
+public interface CustomerResource {
 
 	// json
 
