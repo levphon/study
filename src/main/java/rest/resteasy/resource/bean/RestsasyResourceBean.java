@@ -8,9 +8,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import rest.domain.Customer;
 import rest.domain.Customer_xml;
-import rest.resteasy.resource.CustomerResource;
+import rest.resteasy.resource.ResteasyResource;
 
-public class CustomerResourceBean implements CustomerResource {
+public class RestsasyResourceBean implements ResteasyResource {
 
 	private AtomicInteger idCounter = new AtomicInteger();
 	private Map<Integer, Customer> customerDB = new ConcurrentHashMap<Integer, Customer>();

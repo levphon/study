@@ -17,7 +17,7 @@ import org.springframework.http.MediaType;
 import rest.domain.Customer;
 import rest.domain.Customer_xml;
 
-public class CustomerResourceTest {
+public class ResteasyResourceTest {
 
 	private Client client;
 
