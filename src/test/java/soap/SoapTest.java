@@ -38,9 +38,8 @@ public class SoapTest {
 		StringBuffer result = new StringBuffer();
 		byte[] bytes = new byte[1024];
 		int length = 0;
-		while(length != -1) {
-			length = inputStream.read(bytes, 0, 1024);
-			result.append(new String(bytes));
+		while((length = inputStream.read(bytes, 0, 1024)) != -1) {
+			result.append(new String(bytes, 0 ,length));
 		}
 		System.out.println(result);
 	}
