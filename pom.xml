@@ -23,6 +23,7 @@
 		<ojdbc6.version>11.2.0.4</ojdbc6.version>
 		<javax.inject.version>1</javax.inject.version>
 		<jaxb.version>2.2.7</jaxb.version>
+		<jaxm.version>4.4.2</jaxm.version>
 		<jedis.version>2.5.2</jedis.version>
 		<jersey.version>2.12</jersey.version>
 	</properties>
@@ -165,7 +166,7 @@
 			<version>${javax.inject.version}</version>
 		</dependency>
 
-		<!-- JAXB -->
+		<!-- jaxb -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
@@ -185,6 +186,13 @@
 					<groupId>com.sun.istack</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<!-- jaxm -->
+		<dependency>
+			<groupId>com.sun.messaging.mq</groupId>
+			<artifactId>jaxm-api</artifactId>
+			<version>${jaxm.version}</version>
 		</dependency>
 
 		<!-- jedis -->
