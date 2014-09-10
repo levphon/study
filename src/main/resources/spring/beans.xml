@@ -78,12 +78,12 @@
 		<property name="messageConverters">
 			<list>
 				<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
-					<property name="marshaller" ref="marshaller"/>
-					<property name="unmarshaller" ref="marshaller"/>
+					<property name="marshaller" ref="xstreamMarshaller"/>
+					<property name="unmarshaller" ref="xstreamMarshaller"/>
 				</bean>
-				<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
+				<!-- <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/> -->
 				<!-- only canRead -->
-				<bean class="org.springframework.http.converter.xml.Jaxb2CollectionHttpMessageConverter"/>
+				<!-- <bean class="org.springframework.http.converter.xml.Jaxb2CollectionHttpMessageConverter"/> -->
 				<!-- 这里将MappingJackson2HttpMessageConverter放最后(spring.rest.util.RequestEntity) -->
 				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 			</list>
@@ -91,7 +91,7 @@
 	</bean>
 
 	<!-- not supports collection  @see org.jboss.resteasy.plugins.providers.jaxb.JaxbCollection -->
-	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+	<bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
 		<property name="marshallerProperties">
 			<map>
 				<entry key="jaxb.formatted.output" value="true" value-type="java.lang.Boolean"/>
@@ -99,6 +99,14 @@
 		</property>
 		<property name="classesToBeBound">
 			<value>rest.domain.Customer_xml</value>
+		</property>
+	</bean>
+
+	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="aliases">
+			<map>
+				<entry key="customer" value="rest.domain.Customer"/>
+			</map>
 		</property>
 	</bean>
 

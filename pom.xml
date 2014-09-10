@@ -18,6 +18,7 @@
 		<jstl.version>1.2</jstl.version>
 		<resteasy.version>3.0.8.Final</resteasy.version>
 		<springframework.version>4.0.6.RELEASE</springframework.version>
+		<xstream.version>1.4.7</xstream.version>
 		<!-- mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 
 			-Dversion=11.2.0.4 -Dpackaging=jar -Dfile=src/main/webapp/META-INF/ojdbc6-11.2.0.4.jar 
 			-DgeneratePom=true -->
@@ -158,6 +159,13 @@
 			<artifactId>spring-test</artifactId>
 			<version>${springframework.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- xstream -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>${xstream.version}</version>
 		</dependency>
 
 		<!-- oracle driver -->

@@ -15,10 +15,12 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.oxm.XmlMappingException;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.oxm.xstream.XStreamMarshaller;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import rest.domain.Customer;
 import rest.domain.Customer_xml;
 
 @ActiveProfiles("xml")
@@ -54,9 +56,15 @@ public class SpringTest {
 	}
 
 	@Test
-	public void testJaxb2() throws XmlMappingException, IOException {
-		Jaxb2Marshaller marshaller = context.getBean("marshaller", Jaxb2Marshaller.class);
+	public void testJaxbMarshaller() throws XmlMappingException, IOException {
+		Jaxb2Marshaller marshaller = context.getBean("jaxbMarshaller", Jaxb2Marshaller.class);
 		marshaller.marshal(new Customer_xml(), new StreamResult(System.out));
+	}
+
+	@Test
+	public void testXStreamMarshaller() throws XmlMappingException, IOException {
+		XStreamMarshaller marshaller = context.getBean("xstreamMarshaller", XStreamMarshaller.class);
+		marshaller.marshalOutputStream(new Customer(), System.out);
 	}
 
 }
