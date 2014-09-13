@@ -1,4 +1,4 @@
-package unsafe;
+package jdk.unsafe;
 
 import java.lang.reflect.Field;
 
@@ -16,6 +16,10 @@ public class UnsafeTest {
 		} catch (Exception e) {
 			throw new RuntimeException("can not get instance : sun.misc.Unsafe", e);
 		}
+	}
+
+	public static Unsafe getUnsafe() {
+		return unsafe;
 	}
 
 	public static void main(String[] args) throws Exception {
