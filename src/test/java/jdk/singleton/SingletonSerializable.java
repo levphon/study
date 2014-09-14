@@ -3,7 +3,8 @@ package jdk.singleton;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
-import java.security.AccessControlException;
+
+import jdk.unsafe.UnsafeTest;
 
 public class SingletonSerializable implements Serializable {
 
@@ -11,8 +12,10 @@ public class SingletonSerializable implements Serializable {
 
 	private static final SingletonSerializable INSTANSE = new SingletonSerializable();
 
+	private String name;
 	private SingletonSerializable() {
-		throw new AccessControlException("不容许重复创建实例");
+		name = "mumu";
+//		throw new AssertionError();
 	}
 
 	public static SingletonSerializable getInstanse() {
@@ -32,8 +35,16 @@ public class SingletonSerializable implements Serializable {
 		 */
 		Constructor<SingletonSerializable> constructor = SingletonSerializable.class.getDeclaredConstructor();
 		constructor.setAccessible(true);
-		// Caused by: java.security.AccessControlException: 不容许重复创建实例
-		System.out.println(constructor.newInstance());
+		System.out.println(constructor.newInstance().name);	// mumu
+
+		/**
+		 * Unsafe.allocateInstance 也是通过无参构造器创建对象，但是不会执行里面的代码
+		 */
+		SingletonSerializable object = (SingletonSerializable) UnsafeTest.getUnsafe().allocateInstance(SingletonSerializable.class);
+		System.out.println(object.name);	// null
+
+		SingletonEnum instanse = SingletonEnum.INSTANSE;
+		System.out.println(instanse);
 	}
 
 }

@@ -28,6 +28,7 @@
 		<jaxm.version>4.4.2</jaxm.version>
 		<jedis.version>2.5.2</jedis.version>
 		<jersey.version>2.12</jersey.version>
+		<netty.version>5.0.0.Alpha1</netty.version>
 	</properties>
 
 	<dependencies>
@@ -235,6 +236,12 @@
 			<version>${jersey.version}</version>
 		</dependency>
 
+		<!-- netty -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>${netty.version}</version>
+		</dependency>
 
 	</dependencies>
 	<build>
