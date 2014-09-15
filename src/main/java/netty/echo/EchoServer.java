@@ -1,4 +1,4 @@
-package netty;
+package netty.echo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
@@ -60,8 +60,9 @@ class EchoServerHandler extends ChannelHandlerAdapter {
 		ByteBuf input = (ByteBuf) msg;
 		System.out.println("EchoServer:" + input.toString(CharsetUtil.UTF_8));
 
-		ByteBuf output = Unpooled.buffer().writeBytes("hello->".getBytes()).writeBytes(input);
-//		ctx.writeAndFlush(output);
+		ByteBuf output = Unpooled.buffer().writeBytes("hello->".getBytes())
+				.writeBytes(input);
+		// ctx.writeAndFlush(output);
 		ctx.write(output);
 	}
 
