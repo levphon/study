@@ -12,6 +12,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.util.CharsetUtil;
 
 public class EchoClient {
 
@@ -42,14 +43,7 @@ public class EchoClient {
  */
 class EchoClientHandler extends ChannelHandlerAdapter {
 
-	private static ByteBuf message;
-
-	static {
-		message = Unpooled.buffer(128);
-		for (int i = 0; i < message.capacity(); i++) {
-			message.writeByte((byte) i);
-		}
-	}
+	private static ByteBuf message = Unpooled.buffer(4).writeBytes("木木".getBytes());
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -59,12 +53,8 @@ class EchoClientHandler extends ChannelHandlerAdapter {
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		ctx.write(msg);
-	}
-
-	@Override
-	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-		ctx.flush();
+		ByteBuf input = (ByteBuf) msg;
+		System.out.println("EchoClient:" + input.toString(CharsetUtil.UTF_8));
 	}
 
 	@Override

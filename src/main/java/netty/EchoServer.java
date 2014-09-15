@@ -2,6 +2,7 @@ package netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
@@ -57,10 +58,11 @@ class EchoServerHandler extends ChannelHandlerAdapter {
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
 		ByteBuf input = (ByteBuf) msg;
-		System.out.print(input.toString(CharsetUtil.UTF_8));
+		System.out.println("EchoServer:" + input.toString(CharsetUtil.UTF_8));
 
-//		ctx.writeAndFlush("hello->" + input);
-		ctx.write("hello->" + input);
+		ByteBuf output = Unpooled.buffer().writeBytes("hello->".getBytes()).writeBytes(input);
+//		ctx.writeAndFlush(output);
+		ctx.write(output);
 	}
 
 	@Override
